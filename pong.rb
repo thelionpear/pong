@@ -62,12 +62,23 @@ on :key_held do |event|
   end
 end
 
-@x_velocity = 3
-@y_velocity = 2
+@x_velocity = 0
+@y_velocity = 0
+
+#bug: ball can eventually go so fast that it teleports
+#through the paddle 
 
 def reset_ball 
-  @x_velocity = 3
-  @y_velocity = 2
+  x_magnitude = rand(3...5)
+  y_magnitude = rand(1...3)
+  if rand(1...2) == 1 
+    x_magnitude *= -1 
+  end 
+  if rand(1...2) ==1 
+    y_magnitude *= -1 
+  end 
+  @x_velocity = x_magnitude
+  @y_velocity = y_magnitude
   @ball.y = 300 
   @ball.x = 300
 end 
